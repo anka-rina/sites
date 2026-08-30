@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CarProof — Beweis unabhängig prüfen</title>
+<meta name="description" content="Prüfe ein CarProof-Beweis-Bundle unabhängig im Browser — Merkle-Wurzel, Signatur, per-Foto-Hashes und Zeitstempel. Nichts verlässt dein Gerät." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="index.html">CarProof</a>
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
+    </nav>
+  </header>
+
+  <h1>Beweis unabhängig prüfen</h1>
+  <p class="muted">Zieh den entpackten Bundle-Ordner hierher. Die Prüfung läuft vollständig in deinem
+  Browser — es wird nichts hochgeladen.</p>
+
+  <label id="drop" for="picker">
+    <strong>Ordner hierher ziehen oder klicken</strong><br />
+    <small class="muted">mit <code>evidence-manifest.json</code>, <code>manifest.json</code>, optional
+    <code>timestamp.tsr</code> und den Fotos</small>
+    <input id="picker" type="file" webkitdirectory multiple />
+  </label>
+
+  <div id="report"></div>
+
+  <div class="note">
+    Geprüft wird: (1) RFC-6962-Merkle-Wurzel aus <code>evidence-manifest.json</code>,
+    (2) ECDSA-P256-Signatur über die Wurzel, (3) per-Foto-Hashes
+    <code>SHA256(jpeg ‖ 0x7C7C ‖ meta)</code>, (4) RFC-3161-Zeitstempel (Imprint == Wurzel).
+    Die volle Aussteller-Kette des Zeitstempels prüft <code>openssl ts -verify</code> mit der TSA-CA
+    (siehe <code>VERIFY.txt</code> im Bundle). Nur <code>evidence-manifest.json</code> ist
+    signaturgedeckt; <code>manifest.json</code> ist eine Komfort-Ansicht.
+  </div>
+
+  <footer class="site">
+    <p><a href="index.html">Start</a> · <a href="datenschutz.html">Datenschutz</a> ·
+       <a href="impressum.html">Impressum</a></p>
+  </footer>
+</div>
+
+<script type="module">
+import { verifyBundle } from "./verify-core.js";
+
+const drop = document.getElementById("drop");
+const picker = document.getElementById("picker");
+const reportEl = document.getElementById("report");
+
+const findFile = (files, name) => [...files].find((f) => f.name === name);
+const readJSON = async (f) => (f ? JSON.parse(await f.text()) : null);
+const readBytes = async (f) => (f ? new Uint8Array(await f.arrayBuffer()) : null);
+
+async function handle(files) {
+  reportEl.innerHTML = '<div class="row"><span class="lbl">Prüfe…</span></div>';
+  try {
+    const evidenceManifest = await readJSON(findFile(files, "evidence-manifest.json"));
+    const manifest = await readJSON(findFile(files, "manifest.json"));
+    const timestampBytes = await readBytes(findFile(files, "timestamp.tsr"));
+    const photoFiles = {};
+    for (const f of files) {
+      if (f.name.endsWith(".jpg") || f.name.endsWith(".meta.json")) {
+        photoFiles[f.name] = new Uint8Array(await f.arrayBuffer());
+      }
+    }
+    render(await verifyBundle({ evidenceManifest, manifest, timestampBytes, photoFiles }));
+  } catch (e) {
+    reportEl.innerHTML = `<div class="verdict bad">Fehler: ${e.message || e}</div>`;
+  }
+}
+
+function render(report) {
+  const rows = report.checks.map((c) =>
+    `<div class="row ${c.ok ? "ok" : "bad"}"><span class="ic">${c.ok ? "✓" : "✕"}</span>
+       <div><div class="lbl">${c.label}</div>${c.detail ? `<div class="det">${c.detail}</div>` : ""}</div></div>`
+  ).join("");
+  const verdict = report.verified
+    ? '<div class="verdict ok">✓ VERIFIZIERT — Wurzel, Signatur und Zeitstempel stimmen</div>'
+    : '<div class="verdict bad">✕ NICHT VERIFIZIERT</div>';
+  reportEl.innerHTML = verdict + rows;
+}
+
+picker.addEventListener("change", (e) => handle(e.target.files));
+["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", async (e) => {
+  const items = e.dataTransfer.items;
+  const files = [];
+  async function walk(entry) {
+    if (entry.isFile) { await new Promise((res) => entry.file((f) => { files.push(f); res(); })); }
+    else if (entry.isDirectory) {
+      const entries = await new Promise((res) => entry.createReader().readEntries(res));
+      for (const en of entries) await walk(en);
+    }
+  }
+  if (items && items.length && items[0].webkitGetAsEntry) {
+    for (const it of items) { const en = it.webkitGetAsEntry(); if (en) await walk(en); }
+    handle(files);
+  } else {
+    handle(e.dataTransfer.files);
+  }
+});
+</script>
+</body>
+</html>

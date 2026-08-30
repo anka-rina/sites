@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CarProof: Datenschutzerklärung</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <a class="brand" href="index.html">CarProof</a>
+        <nav>
+          <a href="index.html">Start</a> <a href="verify.html">Beweis prüfen</a>
+          <a href="impressum.html">Impressum</a>
+        </nav>
+      </header>
+
+      <h1>Datenschutzerklärung</h1>
+      <p class="muted">
+        Stand: 30. August 2026. Gilt für diese Website und für die CarProof-App
+        auf iOS und Android.
+      </p>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Ankarina OÜ, Sepapaja tn 6, Lasnamäe linnaosa, 15551 Tallinn, Estland.
+        E-Mail: <a href="mailto:mail@annarina.de">mail@annarina.de</a>. Weitere
+        Angaben im <a href="impressum.html">Impressum</a>.
+      </p>
+
+      <h2>2. Diese Website</h2>
+      <p>
+        Diese Website ist eine statische Informations- und Prüfseite. Sie setzt
+        <strong>keine Cookies</strong> und nutzt
+        <strong>kein Tracking und keine Analytics</strong>. Beim Aufruf
+        verarbeitet der Hosting-Anbieter (GitHub Pages, GitHub Inc., USA)
+        technisch notwendige Server-Logdaten (unter anderem IP-Adresse,
+        Zeitpunkt, angeforderte Datei) zur Auslieferung und Sicherheit.
+        Rechtsgrundlage: Art.&nbsp;6&nbsp;Abs.&nbsp;1&nbsp;lit.&nbsp;f DSGVO
+        (berechtigtes Interesse am sicheren Betrieb). GitHub ist nach dem EU-US
+        Data Privacy Framework zertifiziert.
+      </p>
+      <p>
+        Der <a href="verify.html">Beweis-Prüfer</a> läuft vollständig lokal in
+        deinem Browser (WebCrypto). Die geprüften Dateien werden
+        <strong>nicht hochgeladen</strong> und verlassen dein Gerät nicht.
+      </p>
+
+      <h2>3. Die CarProof-App</h2>
+      <p>
+        Die App arbeitet
+        <strong>lokal auf dem Gerät, ohne Nutzerkonto und ohne Cloud</strong>.
+        Es findet keine standardmäßige Übertragung an uns oder Dritte statt. Die
+        App enthält keine Werbung und kein Tracking.
+      </p>
+
+      <h3>Verarbeitete Daten (auf dem Gerät)</h3>
+      <table class="legal">
+        <tr>
+          <td>Fotos der Fahrzeugübergabe und -rückgabe</td>
+          <td>Beweisdokumentation des Fahrzeugzustands</td>
+        </tr>
+        <tr>
+          <td>Standort (GPS), optional</td>
+          <td>Verortung der Aufnahme als Beweis-Metadatum</td>
+        </tr>
+        <tr>
+          <td>
+            Geräte- und Aufnahme-Metadaten (Modell, OS, Zeit, Ausrichtung)
+          </td>
+          <td>forensische Nachvollziehbarkeit</td>
+        </tr>
+        <tr>
+          <td>Sprachnotizen (Audio, derzeit nur iOS), optional</td>
+          <td>Beschreibung von Schäden</td>
+        </tr>
+        <tr>
+          <td>Fahrzeug- und Vertragsdaten, Unterschriften</td>
+          <td>Zuordnung und Bestätigung der Übergabe</td>
+        </tr>
+        <tr>
+          <td>Geplanter Rückgabetermin, optional</td>
+          <td>lokale Erinnerung eine Stunde vor der Rückgabe</td>
+        </tr>
+      </table>
+      <p>
+        Rechtsgrundlagen: Art.&nbsp;6&nbsp;Abs.&nbsp;1&nbsp;lit.&nbsp;f DSGVO
+        (berechtigtes Interesse an Beweissicherung), gegebenenfalls lit.&nbsp;b
+        (Vertrag) beziehungsweise lit.&nbsp;a (Einwilligung, zum Beispiel beim
+        Standort).
+      </p>
+
+      <h3>Berechtigungen</h3>
+      <p>
+        Kamera (Aufnahmen), Standort (optional, nur während der Aufnahme) und
+        Benachrichtigungen (optional, für die lokale Rückgabe-Erinnerung; kein
+        Server-Push). Jede Berechtigung lässt sich verweigern oder in den
+        Systemeinstellungen entziehen; die Kernfunktion bleibt ohne Standort und
+        Benachrichtigungen nutzbar.
+      </p>
+
+      <h3>Speicherung und Löschung</h3>
+      <p>
+        Alle Daten liegen ausschließlich im App-Container auf deinem Gerät. Du
+        kannst sie jederzeit in der App über "Alle Daten löschen" oder durch
+        Deinstallation der App vollständig entfernen (Art.&nbsp;17&nbsp;DSGVO).
+        Die App legt bewusst keine Cloud-Backups ihrer Beweisdaten an.
+      </p>
+
+      <h3>Übertragung an Dritte (nur auf deine Aktion)</h3>
+      <ul>
+        <li>
+          <strong>Teilen eines Berichts:</strong> erfolgt nur, wenn du den
+          Bericht oder das Beweispaket aktiv teilst (zum Beispiel per Mail über
+          deine Mail-App).
+        </li>
+        <li>
+          <strong>Vertrauenswürdiger Zeitstempel (optional, iOS):</strong> ist
+          er aktiviert, wird beim Abschluss ausschließlich ein 32-Byte-Hash
+          (Merkle-Wurzel) an die gewählte Time-Stamping-Authority gesendet:
+          <strong>keine Fotos, keine personenbezogenen Daten</strong>.
+        </li>
+        <li>
+          <strong>Claim-Webhook (optional, iOS):</strong> ist eine URL
+          hinterlegt, wird der maschinenlesbare Claim (<code>claim.json</code>,
+          <strong>ohne Fotos</strong>) an das von dir konfigurierte System
+          gesendet.
+        </li>
+      </ul>
+
+      <h3>In-App-Kauf (CarProof Pro)</h3>
+      <p>
+        Der einmalige Pro-Kauf wird vollständig vom jeweiligen Store
+        abgewickelt: Google Play Billing (Google Ireland Limited) auf Android,
+        App Store In-App-Kauf (Apple Distribution International Ltd.) auf iOS.
+        Wir erhalten dabei <strong>keine Zahlungsdaten</strong> und legen kein
+        Nutzerkonto an; die Kaufberechtigung wird auf dem Gerät gegen den Store
+        geprüft. Für die Zahlungsabwicklung gelten die Datenschutzhinweise von
+        Google beziehungsweise Apple.
+      </p>
+
+      <h2>4. Personenbezogene Daten Dritter (Kennzeichen, Gesichter)</h2>
+      <p>
+        Beweisfotos können Kennzeichen oder Personen Dritter enthalten. Die
+        Verarbeitung zu Beweiszwecken kann nach
+        Art.&nbsp;6&nbsp;Abs.&nbsp;1&nbsp;lit.&nbsp;f DSGVO zulässig sein; vor
+        einer Weitergabe oder Veröffentlichung ist die Erforderlichkeit zu
+        prüfen.
+      </p>
+
+      <h2>5. Deine Rechte</h2>
+      <p>
+        Dir stehen Auskunft (Art.&nbsp;15), Berichtigung (16), Löschung (17),
+        Einschränkung (18), Datenübertragbarkeit (20) und Widerspruch (21) zu
+        sowie ein Beschwerderecht bei einer Aufsichtsbehörde. Da die App-Daten
+        ausschließlich lokal liegen, übst du Auskunft und Löschung direkt in der
+        App aus.
+      </p>
+
+      <h2>6. Kontakt</h2>
+      <p>
+        Anfragen zum Datenschutz:
+        <a href="mailto:mail@annarina.de">mail@annarina.de</a>.
+      </p>
+
+      <footer class="site">
+        <p>
+          <a href="index.html">Start</a> ·
+          <a href="impressum.html">Impressum</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
