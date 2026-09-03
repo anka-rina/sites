@@ -1,87 +1,126 @@
 <!doctype html>
 <html lang="de">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CarProof — manipulationssicherer Übergabe-Beweis für Mietwagen</title>
-<meta name="description" content="Dokumentiere den Zustand eines Mietwagens bei Übergabe und Rückgabe — zeitgestempelt, gegen nachträgliche Änderung gesichert und unabhängig von Dritten prüfbar." />
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<div class="wrap">
-  <header class="site">
-    <a class="brand" href="index.html">CarProof</a>
-    <nav>
-      <a href="verify.html">Beweis prüfen</a>
-      <a href="support.html">Support</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="impressum.html">Impressum</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      CarProof: manipulationssicherer Übergabe-Beweis für Mietwagen
+    </title>
+    <meta
+      name="description"
+      content="Dokumentiere den Zustand eines Mietwagens bei Übergabe und Rückgabe: zeitgestempelt, gegen nachträgliche Änderung gesichert und unabhängig von Dritten prüfbar."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <a class="brand" href="index.html">CarProof</a>
+        <nav>
+          <a href="verify.html">Beweis prüfen</a>
+          <a href="support.html">Support</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="impressum.html">Impressum</a>
+        </nav>
+      </header>
 
-  <h1>Beweise den Zustand des Mietwagens — bevor es Streit gibt.</h1>
-  <p class="lead">CarProof dokumentiert Übergabe und Rückgabe in wenigen Minuten so, dass der Beweis
-  <strong>zeitlich unabhängig bestätigt</strong>, <strong>gegen nachträgliche Änderung gesichert</strong>
-  und <strong>von jedem Dritten eigenständig nachprüfbar</strong> ist — auch von der Vermietung, deiner
-  Bank oder einem Gericht.</p>
+      <h1>Beweise den Zustand des Mietwagens, bevor es Streit gibt.</h1>
+      <p class="lead">
+        CarProof dokumentiert Übergabe und Rückgabe in wenigen Minuten so, dass
+        der Beweis <strong>zeitlich unabhängig bestätigt</strong>,
+        <strong>gegen nachträgliche Änderung gesichert</strong> und
+        <strong>von jedem Dritten eigenständig nachprüfbar</strong> ist, auch
+        von der Vermietung, deiner Bank oder einem Gericht.
+      </p>
 
-  <p>
-    <a class="btn" href="verify.html">Einen Beweis selbst prüfen →</a>
-  </p>
+      <p>
+        <a class="btn" href="verify.html">Einen Beweis selbst prüfen →</a>
+      </p>
 
-  <h2>Warum das ein normales Handy-Foto schlägt</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Manipulationssicher</h3>
-      <p>Jede Aufnahme erhält eine SHA-256-Prüfsumme über Bild und Metadaten. Alle Aufnahmen werden in
-      eine kryptografische Wurzel (RFC-6962-Merkle-Baum) gebündelt und im Secure Enclave des Geräts
-      signiert. Jede nachträgliche Änderung ist erkennbar.</p>
+      <h2>Warum das ein normales Handy-Foto schlägt</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Manipulationssicher</h3>
+          <p>
+            Jede Aufnahme erhält eine SHA-256-Prüfsumme über Bild und Metadaten.
+            Alle Aufnahmen werden in eine kryptografische Wurzel
+            (RFC-6962-Merkle-Baum) gebündelt und im Secure Enclave des Geräts
+            signiert. Jede nachträgliche Änderung ist erkennbar.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Unabhängig prüfbar</h3>
+          <p>
+            Der Beweis liegt in einem offenen, dokumentierten Format. Jeder kann
+            die Wurzel selbst nachrechnen und Signatur sowie Zeitstempel prüfen,
+            ohne Vertrauen in CarProof, mit Standard-Werkzeugen oder hier im
+            Browser.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Vertrauenswürdiger Zeitstempel</h3>
+          <p>
+            Optional bindet ein RFC-3161-Zeitstempel die Aufnahmezeit an eine
+            unabhängige Stelle statt an die manipulierbare Geräteuhr. Mit einem
+            eIDAS-qualifizierten Aussteller trägt er die widerlegbare Vermutung
+            nach eIDAS&nbsp;Art.&nbsp;41 / §&nbsp;371a&nbsp;ZPO.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Privat by Design</h3>
+          <p>
+            Erfassung und Versiegelung laufen vollständig auf dem Gerät, kein
+            Konto, keine Cloud. Daten verlassen das Gerät nur, wenn du einen
+            Bericht teilst (oder den optionalen Zeitstempel aktivierst).
+          </p>
+        </div>
+      </div>
+
+      <h2>Für wen</h2>
+      <p>
+        <strong>Mieter:</strong> Schütze dich gegen unberechtigte
+        Schadensforderungen und Kautionseinbehalte: mit einem Beweispaket, das
+        Vermieter, Versicherung und Gericht unabhängig nachprüfen können.
+      </p>
+      <p>
+        <strong>Vermietung &amp; Flotten:</strong> Lückenlose, beweissichere
+        Übergabe-/Rückgabe-Dokumentation mit strukturiertem Export für Schaden-
+        und Flottensysteme.
+      </p>
+
+      <div class="note">
+        Hinweis zur Belastbarkeit: CarProof erstellt technische Belege. Ob ein
+        Bericht als Beweismittel anerkannt wird, entscheidet die zuständige
+        Stelle. Die Bezeichnung „gerichtsfest" bezieht sich nur auf Berichte mit
+        einem eIDAS-qualifizierten Zeitstempel. Dies ist keine Rechtsberatung.
+      </div>
+
+      <h2>So prüfst du einen Bericht</h2>
+      <ol>
+        <li>Entpacke das Beweis-Bundle (ZIP), das CarProof exportiert.</li>
+        <li>
+          Zieh den entpackten Ordner auf den
+          <a href="verify.html">Browser-Verifier</a>, er rechnet die Wurzel
+          nach und prüft Signatur und Zeitstempel, vollständig lokal in deinem
+          Browser.
+        </li>
+        <li>
+          Für die volle Prüfung inkl. Zertifikatskette liegt jedem Bundle eine
+          <code>VERIFY.txt</code> mit <code>openssl</code>-Befehlen bei.
+        </li>
+      </ol>
+
+      <footer class="site">
+        <p>
+          <a href="support.html">Support</a> ·
+          <a href="datenschutz.html">Datenschutz</a> ·
+          <a href="impressum.html">Impressum</a> ·
+          <a href="verify.html">Beweis prüfen</a>
+        </p>
+        <p>
+          © CarProof. CarProof gibt es für iPhone und Android.
+        </p>
+      </footer>
     </div>
-    <div class="card">
-      <h3>Unabhängig prüfbar</h3>
-      <p>Der Beweis liegt in einem offenen, dokumentierten Format. Jeder kann die Wurzel selbst
-      nachrechnen und Signatur sowie Zeitstempel prüfen — ohne Vertrauen in CarProof, mit Standard-Werkzeugen
-      oder hier im Browser.</p>
-    </div>
-    <div class="card">
-      <h3>Vertrauenswürdiger Zeitstempel</h3>
-      <p>Optional bindet ein RFC-3161-Zeitstempel die Aufnahmezeit an eine unabhängige Stelle statt an
-      die manipulierbare Geräteuhr. Mit einem eIDAS-qualifizierten Aussteller trägt er die widerlegbare
-      Vermutung nach eIDAS&nbsp;Art.&nbsp;41 / §&nbsp;371a&nbsp;ZPO.</p>
-    </div>
-    <div class="card">
-      <h3>Privat by Design</h3>
-      <p>Erfassung und Versiegelung laufen vollständig auf dem Gerät — kein Konto, keine Cloud. Daten
-      verlassen das Gerät nur, wenn du einen Bericht teilst (oder den optionalen Zeitstempel aktivierst).</p>
-    </div>
-  </div>
-
-  <h2>Für wen</h2>
-  <p><strong>Mieter:</strong> Schütze dich gegen unberechtigte Schadensforderungen und Kautionseinbehalte.
-  Aus deiner Dokumentation erstellt die App auf Wunsch einen versandfertigen Widerspruchsbrief.</p>
-  <p><strong>Vermietung &amp; Flotten:</strong> Lückenlose, beweissichere Übergabe-/Rückgabe-Dokumentation
-  mit strukturiertem Export für Schaden- und Flottensysteme.</p>
-
-  <div class="note">
-    Hinweis zur Belastbarkeit: CarProof erstellt technische Belege. Ob ein Bericht als Beweismittel
-    anerkannt wird, entscheidet die zuständige Stelle. Die Bezeichnung „gerichtsfest" bezieht sich nur auf
-    Berichte mit einem eIDAS-qualifizierten Zeitstempel. Dies ist keine Rechtsberatung.
-  </div>
-
-  <h2>So prüfst du einen Bericht</h2>
-  <ol>
-    <li>Entpacke das Beweis-Bundle (ZIP), das CarProof exportiert.</li>
-    <li>Zieh den entpackten Ordner auf den <a href="verify.html">Browser-Verifier</a> — er rechnet die
-      Wurzel nach und prüft Signatur und Zeitstempel, vollständig lokal in deinem Browser.</li>
-    <li>Für die volle Prüfung inkl. Zertifikatskette liegt jedem Bundle eine <code>VERIFY.txt</code> mit
-      <code>openssl</code>-Befehlen bei.</li>
-  </ol>
-
-  <footer class="site">
-    <p><a href="support.html">Support</a> · <a href="datenschutz.html">Datenschutz</a> ·
-       <a href="impressum.html">Impressum</a> · <a href="verify.html">Beweis prüfen</a></p>
-    <p>© CarProof. Die App befindet sich in Vorbereitung für den App Store.</p>
-  </footer>
-</div>
-</body>
+  </body>
 </html>
